@@ -1,0 +1,19 @@
+<div class="container mt-5 mb-5">
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-md-6 border-bottom  mb-5">
+      <label for="exampleFormControlTextarea1" class="form-label">Que quieres publicar</label>
+      <textarea class="form-control" id="publicar" [(ngModel)]="publicar.content" rows="3"></textarea>
+      <div class="d-grid gap-2 mt-2 mb-3">
+        <button class="btn btn-primary" (click)="onSave()" type="button">Publicar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row d-flex align-items-center justify-content-center">
+      <div class="col-md-6">
+        @for (item of posts; track $index) {
+          <app-post (event)="onEmotions($event)" [data]="item"></app-post>
+        }
+      </div>
+  </div>
+</div>

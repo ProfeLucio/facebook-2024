@@ -1,0 +1,35 @@
+<div class="card mb-3 shadow-sm">
+  <div class="d-flex justify-content-between p-2 px-3">
+      <div class="d-flex flex-row align-items-center">
+        <img [routerLink]="['/config', data.user.id]" [src]="'https://i.pravatar.cc/150?img='+data.user.id" width="50" class="rounded-circle cursor">
+        <div class="d-flex flex-column ml-2">
+          <span [routerLink]="['/config', data.user.id]" class="font-weight-bold cursor">{{data.user.firstname}} {{data.user.lastname}}</span>
+          <small class="text-primary">{{data.created_at}}</small> </div>
+      </div>
+      <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">20 mins</small> <i class="fa fa-ellipsis-h"></i> </div>
+  </div>
+  @for (item of data.images; track $index) {
+    <img [src]="item" class="img-fluid">
+  }
+  <div class="p-2">
+      <p class="text-justify">{{data.content}}</p>
+      <hr>
+      <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex flex-row icons d-flex align-items-center">
+            {{data.heart}} <i class="fa fa-heart me-2 cursor" (click)="onEmotion('heart')"></i>
+            {{data.smile}} <i class="fa fa-smile-o ml-2 cursor" (click)="onEmotion('smile')"></i>
+          </div>
+          <div class="d-flex flex-row muted-color"> <span> {{data.comments.length}}  Comentarios</span> <span class="ml-2">Share</span> </div>
+      </div>
+      <hr>
+      <div class="comments">
+          @for (item of data.comments; track $index) {
+            <app-comment [data]="item"></app-comment>
+          }
+
+          <div class="comment-input"> <input type="text" class="form-control">
+              <div class="fonts"> <i class="fa fa-camera"></i> </div>
+          </div>
+      </div>
+  </div>
+</div>
